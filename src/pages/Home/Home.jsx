@@ -18,22 +18,16 @@ function Home() {
     if (data) {
       const nodes = data.Admin.Tree.GetContentNodes.edges;
       let nodesWithId = [];
-      nodes.forEach(node => {
+      nodes.forEach((node) => {
         let nodeWithId = {
-            node,
-            id: uuid()
+          title: node.node.structureDefinition.title,
+          id: uuid(),
         };
         nodesWithId.push(nodeWithId);
-      })
+      });
       setContentNodes(nodesWithId);
     }
   }, [data]);
-
-  useEffect(() => {
-    if (contentNodes.length > 0) {
-      console.log({ contentNodes });
-    }
-  }, [contentNodes]);
 
   const handleOnDragEnd = (result) => {
     const items = Array.from(contentNodes);
@@ -65,21 +59,17 @@ function Home() {
           <DragDropContext onDragEnd={handleOnDragEnd}>
             <Droppable droppableId="nodes">
               {(provided) => (
-                <ul className="nodes" id="nodes" {...provided.droppableProps} ref={provided.innerRef}>
+                <ul
+                  className="nodes"
+                  id="nodes"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
                   {contentNodes.map((node, index) => {
-                    const nodeId = node.id;
                     return (
-                        
-                      <Draggable key={nodeId} draggableId={nodeId} index={index}>
-                        {(provided) => (
-                            <li draggable id={nodeId} ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                          {/* <Suspense fallback={<div>loading...</div>}>
-                            <Node node={node.node.structureDefinition.title} />
-                          </Suspense> */}
-                          {node.node.node.structureDefinition.title}
-                          </li>
-                        )}
-                      </Draggable>
+                      <Suspense key={node.id} fallback={<div>loading...</div>}>
+                        <Node node={node} index={index} provided={provided} />
+                      </Suspense>
                     );
                   })}
                   {provided.placeholder}
