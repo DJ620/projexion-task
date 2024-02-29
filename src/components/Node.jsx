@@ -2,7 +2,7 @@ import React from 'react';
 
 function Node({node}) {
   return (
-    <li style={{height: "30vh"}}>{node}</li>
+    <p style={{height: "30vh"}}>{node}</p>
   )
 };
 
