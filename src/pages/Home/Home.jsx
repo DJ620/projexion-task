@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 import StoredInfo from "../../utils/StoredInfo";
 import LogoutButton from "../../components/LogoutButton";
 import uuid from "react-uuid";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
 const Node = lazy(() => import("../../components/Node"));
 
@@ -43,15 +43,8 @@ function Home() {
   }
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "0px 50px",
-        }}
-      >
-        <p>Welcome, {username}</p>
+      <div className="flex justify-between items-center px-20 mb-5 h-16 bg-gray-800 sticky top-0 w-full">
+        <p className="font-bold text-lg text-white">Welcome, {username}</p>
         <LogoutButton />
       </div>
       {contentNodes.length > 0 && (
@@ -68,7 +61,7 @@ function Home() {
                   {contentNodes.map((node, index) => {
                     return (
                       <Suspense key={node.id} fallback={<div>loading...</div>}>
-                        <Node node={node} index={index} provided={provided} />
+                        <Node node={node} index={index} />
                       </Suspense>
                     );
                   })}

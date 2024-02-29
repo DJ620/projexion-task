@@ -8,7 +8,6 @@ function ProtectedRoute({Component}) {
     useEffect(() => {
         if (!StoredInfo.isTokenValid()) {
             navigate("/");
-            // localStorage.removeItem('userInfo');
         }
     }, []);
     

@@ -10,7 +10,7 @@ function LogoutButton() {
     };
 
   return (
-    <button style={{height: "30px"}} onClick={handleLogout}>Logout</button>
+    <button className='bg-green-400 px-4 py-2 rounded-md hover:bg-blue-300 focus:outline-none focus:bg-blue-300' onClick={handleLogout}>Logout</button>
   )
 };
 
