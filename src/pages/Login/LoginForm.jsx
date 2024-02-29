@@ -8,9 +8,11 @@ function LoginForm() {
   const [login] = useMutation(loginMutation);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setErrorMsg(null);
     try {
       const { data } = await login({
         variables: {
@@ -30,6 +32,9 @@ function LoginForm() {
         setPassword("");
       }
     } catch (error) {
+      setErrorMsg(error.message);
+      setUsername("");
+      setPassword("");
       console.error("Error during login: ", error);
     }
   };
@@ -62,6 +67,7 @@ function LoginForm() {
         </div>
         <button type="submit">Login</button>
       </form>
+      {errorMsg && <p>Error: {errorMsg}</p>}
     </div>
   );
 }
