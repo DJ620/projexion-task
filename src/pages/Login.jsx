@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { loginMutation } from "../../utils/Queries";
+import { loginMutation } from "../utils/Queries";
 import { useNavigate } from "react-router-dom";
 
-function LoginForm() {
+function Login() {
   const navigate = useNavigate();
   const [login] = useMutation(loginMutation);
   const [username, setUsername] = useState("");
@@ -85,4 +85,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default Login;

@@ -1,7 +1,7 @@
 export default {
   getUsername: () => {
-    const { username } = JSON.parse(localStorage.getItem("userInfo"));
-    return username;
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    return userInfo && userInfo.username ? userInfo.username : '';
   },
 
   isTokenValid: () => {
