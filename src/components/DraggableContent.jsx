@@ -28,6 +28,7 @@ function DraggableContent({data}) {
     items.splice(result.destination.index, 0, reorderedItem);
     setContentNodes(items);
   };
+
   return (
     <DragDropContext onDragEnd={(result) => handleOnDragEnd(result)}>
       <Droppable droppableId="nodes">
@@ -65,6 +66,6 @@ function DraggableContent({data}) {
       </Droppable>
     </DragDropContext>
   );
-}
+};
 
 export default DraggableContent;
